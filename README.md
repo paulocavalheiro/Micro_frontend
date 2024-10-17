@@ -2,6 +2,7 @@
 Microfrontend Nextjs v13
 
 #TAGS: @Nextjs13, @webpack, @module-federation
+*projeto financas fornece componente modular para o projeto vendas*
 
 *Passos:
 
@@ -13,8 +14,9 @@ Microfrontend Nextjs v13
 	Crie um arquivo .env na raiz do projeto e declare NEXT_PRIVATE_LOCAL_WEBPACK=true
 	Crie um arquivo .babelrc e declare no eslint:
 	{
-	  "extends": ["next/babel", "next/core-web-vitals"]
-	}
+	  "extends": ["next/babel", "next/core-web-vitals"]	}
+
+   	
 	
 
 *Configurar:
