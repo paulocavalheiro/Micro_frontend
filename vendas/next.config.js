@@ -12,6 +12,20 @@ module.exports = {
         },
         filename: 'static/chunks/remoteEntry.js',
         force: true,
+        shared: {
+          '@chakra-ui/': {
+            singleton: true,
+            requiredVersion: false,
+          },
+          '@emotion/': {
+            singleton: true,
+            requiredVersion: false,
+          },
+          '@emotion/': {
+            singleton: true,
+            requiredVersion: false,
+          }
+        }
       }),
     );
 

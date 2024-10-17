@@ -1,9 +1,4 @@
 /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   reactStrictMode: true,
-// }
-
-// module.exports = nextConfig
 
 const NextFederationPlugin = require('@module-federation/nextjs-mf');
 
@@ -18,10 +13,21 @@ module.exports = {
         },
         filename: 'static/chunks/remoteEntry.js',
         exposes: {
-          './pages/dashboard': './src/components/DashboardUser.tsx',          
+          './pages/dashboard': './src/pages/dashboard.tsx',          
         },
         shared: {
-          // whatever else
+          '@chakra-ui/': {
+            singleton: true,
+            requiredVersion: false,
+          },
+          '@emotion/': {
+            singleton: true,
+            requiredVersion: false,
+          },
+          '@emotion/': {
+            singleton: true,
+            requiredVersion: false,
+          },
         },
         force: true,
       }),

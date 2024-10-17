@@ -1,3 +1,42 @@
+import {
+  Box,
+  Button,
+  List,
+  ListIcon,
+  ListItem,
+  UnorderedList,
+} from "@chakra-ui/react";
+
 export default function DashboardUser() {
-    return <div>DashboardUser data: {JSON.stringify({user: 'John Doe', age: 30})}</div>
+  const handleAdicionarItem = () => {
+    console.log("Adicionar");
+  };
+
+  return (
+    <Box
+      sx={{
+        backgroundColor: "gray",
+        color: "#fff",
+        display: "flex",
+        flexDirection: "column",
+        padding: "20px",
+        borderRadius: "10px",
+        border: "1px solid black",
+      }}
+    >
+      <UnorderedList>
+        <ListItem>Lorem ipsum dolor sit amet</ListItem>
+        <ListItem>Consectetur adipiscing elit</ListItem>
+        <ListItem>Integer molestie lorem at massa</ListItem>
+        <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+      </UnorderedList>
+      <Button
+        sx={{ marginTop: "20px" }}
+        _dark={{ bg: "gray.800" }}
+        onClick={handleAdicionarItem}
+      >
+        Adicionar Item
+      </Button>
+    </Box>
+  );
 }
