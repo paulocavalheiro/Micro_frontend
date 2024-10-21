@@ -9,6 +9,7 @@ module.exports = {
         name: 'vendas',
         remotes: {
           financas: `financas@http://localhost:3000/_next/static/${isServer ? 'ssr' : 'chunks'}/remoteEntry.js`,
+          host: `host@http://localhost:3002/_next/static/${isServer ? 'ssr' : 'chunks'}/remoteEntry.js`
         },
         filename: 'static/chunks/remoteEntry.js',
         force: true,

@@ -32,7 +32,8 @@ export default function DashboardUser() {
       </UnorderedList>
       <Button
         sx={{ marginTop: "20px" }}
-        _dark={{ bg: "gray.800" }}
+        bg={"black"}
+        color={"white"}
         onClick={handleAdicionarItem}
       >
         Adicionar Item
