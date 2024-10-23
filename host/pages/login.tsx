@@ -1,5 +1,6 @@
-import Layout from "../components/Layout";
+import { Box } from "@chakra-ui/react";
+import Layout from "../components/PrivateLayout/Layout";
 
 export default function login() {
-  return <Layout />;
+  return <Box>Host</Box>;
 }

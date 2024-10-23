@@ -6,9 +6,9 @@ module.exports = {
     const { isServer } = options;
     config.plugins.push(
       new NextFederationPlugin({
-        name: 'vendas',
+        name: 'bime_vendas',
         remotes: {
-          financas: `financas@http://localhost:3000/_next/static/${isServer ? 'ssr' : 'chunks'}/remoteEntry.js`,
+          bime_financas: `bime_financas@http://localhost:3000/_next/static/${isServer ? 'ssr' : 'chunks'}/remoteEntry.js`,
           host: `host@http://localhost:3002/_next/static/${isServer ? 'ssr' : 'chunks'}/remoteEntry.js`
         },
         filename: 'static/chunks/remoteEntry.js',
