@@ -1,57 +1,49 @@
 import {
   Box,
-  Flex,
+  Button,
   Table,
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
-  Text,
-  Button,
 } from "@chakra-ui/react";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
-const Page = dynamic<{ data: JSX.Element }>(
-  () => import("host/pages/privateLayout"),
-  {
-    ssr: false,
-    loading: () => <p>Carregando layout...</p>,
-  }
-);
+export default function ListaFinanceiro() {
+  const salesData = [
+    {
+      id: 1,
+      product: "Produto A",
+      quantity: 5,
+      total: "R$ 500,00",
+      date: "2024-10-20",
+    },
+    {
+      id: 2,
+      product: "Produto B",
+      quantity: 3,
+      total: "R$ 300,00",
+      date: "2024-10-21",
+    },
+    {
+      id: 3,
+      product: "Produto C",
+      quantity: 8,
+      total: "R$ 800,00",
+      date: "2024-10-22",
+    },
+  ];
 
-const salesData = [
-  {
-    id: 1,
-    product: "Produto A",
-    quantity: 5,
-    total: "R$ 500,00",
-    date: "2024-10-20",
-  },
-  {
-    id: 2,
-    product: "Produto B",
-    quantity: 3,
-    total: "R$ 300,00",
-    date: "2024-10-21",
-  },
-  {
-    id: 3,
-    product: "Produto C",
-    quantity: 8,
-    total: "R$ 800,00",
-    date: "2024-10-22",
-  },
-];
-
-export default function TelaVendas() {
   const router = useRouter();
 
-  const pageVendas = (
+  return (
     <>
-      <Text>Conteúdo do projeto vendas</Text>
+      <Text fontSize="2xl" mb={4}>
+        Resumo vendas
+      </Text>
       <Box margin="0 auto" mt={10} width={"100%"}>
         <TableContainer>
           <Table variant="striped" colorScheme="gray">
@@ -77,18 +69,7 @@ export default function TelaVendas() {
             </Tbody>
           </Table>
         </TableContainer>
-        <Box mt={10}>
-          <Button onClick={() => router.push("/telaFinanceiro")}>
-            Ir para financeiro
-          </Button>
-        </Box>
       </Box>
     </>
-  );
-
-  return (
-    <Box>
-      <Page data={pageVendas} />
-    </Box>
   );
 }

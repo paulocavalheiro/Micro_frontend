@@ -6,7 +6,7 @@ export default function LeftMenu() {
     <Box as="nav" width="100%" height={"100%"} p="4" bg="menuPrimary">
       <List spacing={4}>
         <ListItem>
-          <Link href="/telaVendas">Vendas</Link>
+          <Link href="/vendas/telaVendas">Vendas</Link>
         </ListItem>
         <ListItem>
           <Link href="/financeiro/telaFinanceiro">Financeiro</Link>

@@ -1,8 +1,8 @@
 import Layout from "../../components/PrivateLayout/Layout";
 import dynamic from "next/dynamic";
 
-export default function TelaFinanceiro() {
-  const Page = dynamic(() => import("bime_financeiro/pages/listaFinanceiro"), {
+export default function TelaVendas() {
+  const Page = dynamic(() => import("bime_vendas/pages/listaVendas"), {
     ssr: false,
     loading: () => <p>Carregando layout...</p>,
   });

@@ -7,7 +7,7 @@ module.exports = {
     const { isServer } = options;
     config.plugins.push(
       new NextFederationPlugin({
-        name: "financas",
+        name: "bime_financeiro",
         remotes: {
           bime_vendas: `bime_vendas@http://localhost:3001/_next/static/${
             isServer ? "ssr" : "chunks"
@@ -20,6 +20,7 @@ module.exports = {
         exposes: {
           "./pages/dashboard": "./src/pages/dashboard.tsx",
           "./pages/telaFinancas": "./src/pages/telaFinancas.tsx",
+          "./pages/listaFinanceiro": "./src/pages/listaFinanceiro.tsx",
         },
         shared: {
           "@chakra-ui/": {

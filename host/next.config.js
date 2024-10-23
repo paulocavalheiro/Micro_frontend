@@ -12,10 +12,12 @@ module.exports = {
           bime_vendas: `bime_vendas@http://localhost:3001/_next/static/${
             isServer ? "ssr" : "chunks"
           }/remoteEntry.js`,
+          bime_financeiro: `bime_financeiro@http://localhost:3000/_next/static/${
+            isServer ? "ssr" : "chunks"
+          }/remoteEntry.js`,
         },
         filename: "static/chunks/remoteEntry.js",
         exposes: {
-          "./pages/privateLayout": "./pages/privateLayout.tsx",
           "./pages/login": "./pages/login.tsx",
         },
         force: true,
