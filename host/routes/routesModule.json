@@ -1,0 +1,10 @@
+{
+  "baseDir": "./",
+  "exposesRoutes": {
+     "contexts": {
+      "UserProvider": "contexts/UserContext.tsx",
+      "UserContextType": "contexts/UserContext.tsx"
+    }
+ 
+  }
+}

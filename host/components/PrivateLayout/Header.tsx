@@ -8,8 +8,11 @@ import {
   MenuList,
   Text,
 } from "@chakra-ui/react";
+import { useAppContext } from "../../hooks/useAppContext";
 
 export default function Header() {
+  const { user } = useAppContext();
+
   return (
     <Box
       bg={"menuPrimary"}
@@ -20,7 +23,9 @@ export default function Header() {
         width: "100%",
       }}
     >
-      <Text>Header Menu</Text>
+      <Text>
+        Bem vindo {user?.name} - {user?.email}
+      </Text>
       <Menu>
         <MenuButton
           as={IconButton}

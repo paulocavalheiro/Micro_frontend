@@ -1,0 +1,9 @@
+
+
+{
+
+  "baseDir": "./src/pages/",
+  "dashboards": {
+    "listaFinanceiro": "listaFinanceiro.tsx"
+  }
+}

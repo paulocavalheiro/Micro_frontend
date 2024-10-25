@@ -10,9 +10,10 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { useUser, UserContextType } from "host/contexts/UserProvider";
 
 export default function ListaFinanceiro() {
+  const { user } = useUser() as UserContextType;
   const financialData = [
     {
       id: 1,
@@ -44,12 +45,10 @@ export default function ListaFinanceiro() {
     },
   ];
 
-  const router = useRouter();
-
   return (
     <>
       <Text fontSize="2xl" mb={4}>
-        Resumo Financeiro
+        Resumo Financeiros de {user?.name}
       </Text>
       <Box margin="0 auto" mt={10} width={"100%"}>
         <TableContainer>
@@ -76,6 +75,7 @@ export default function ListaFinanceiro() {
             </Tbody>
           </Table>
         </TableContainer>
+        <Button mt={4}>Adicionar Novo</Button>
       </Box>
     </>
   );

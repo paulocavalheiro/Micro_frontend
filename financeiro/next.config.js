@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const NextFederationPlugin = require("@module-federation/nextjs-mf");
+const routes = require("./src/routes/moduleRoutes.json");
 
 module.exports = {
   webpack(config, options) {
@@ -9,18 +10,16 @@ module.exports = {
       new NextFederationPlugin({
         name: "bime_financeiro",
         remotes: {
-          bime_vendas: `bime_vendas@http://localhost:3001/_next/static/${
+          bime_vendas: `${process.env.NEXT_PRIVATE_LOCAL_BIMEVENDAS}${
             isServer ? "ssr" : "chunks"
           }/remoteEntry.js`,
-          host: `host@http://localhost:3002/_next/static/${
+          host: `${process.env.NEXT_PRIVATE_LOCAL_HOST}${
             isServer ? "ssr" : "chunks"
           }/remoteEntry.js`,
         },
         filename: "static/chunks/remoteEntry.js",
         exposes: {
-          "./pages/dashboard": "./src/pages/dashboard.tsx",
-          "./pages/telaFinancas": "./src/pages/telaFinancas.tsx",
-          "./pages/listaFinanceiro": "./src/pages/listaFinanceiro.tsx",
+          "./pages/listaFinanceiro": `${routes?.baseDir}${routes?.dashboards?.listaFinanceiro}`,
         },
         shared: {
           "@chakra-ui/": {

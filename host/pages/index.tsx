@@ -1,9 +1,40 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Stack,
+  useEditable,
+} from "@chakra-ui/react";
+import { useUser } from "../contexts/UserContext";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [nome, setNome] = useState("");
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+  const { setUser } = useUser();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email && !password && !nome) {
+      return;
+    } else {
+      setUser({
+        name: nome,
+        email,
+      });
+      router.push("/financeiro/telaFinanceiro");
+    }
+  };
+
   return (
     <>
       <Head>
@@ -13,51 +44,70 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
+        <Box
+          w={"100%"}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          bg={"containerPrimary"}
+          p={4}
+        >
+          <Box
+            bg="blue.500"
+            p={6}
+            rounded="md"
+            shadow="md"
+            width={{ base: "100%", sm: "400px" }}
+          >
+            <Heading as="h2" mb={6} textAlign="center">
+              Acesso
+            </Heading>
+            <form onSubmit={handleSubmit}>
+              <Stack spacing={4}>
+                <FormControl id="nome">
+                  <FormLabel>Nome</FormLabel>
+                  <Input
+                    type="nome"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                    placeholder="Digite seu nome"
+                    required
+                  />
+                </FormControl>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
+                {/* Campo de email */}
+                <FormControl id="email">
+                  <FormLabel>Email</FormLabel>
+                  <Input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Digite seu email"
+                    required
+                  />
+                </FormControl>
 
+                {/* Campo de senha */}
+                <FormControl id="password">
+                  <FormLabel>Senha</FormLabel>
+                  <Input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Digite sua senha"
+                    required
+                  />
+                </FormControl>
+
+                {/* Botão de login */}
+                <Button type="submit" colorScheme="blue" size="lg" width="full">
+                  Entrar
+                </Button>
+              </Stack>
+            </form>
+          </Box>
+        </Box>
       </main>
     </>
-  )
+  );
 }
