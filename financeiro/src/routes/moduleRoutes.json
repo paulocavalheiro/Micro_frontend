@@ -1,9 +1,9 @@
 
-
 {
-
   "baseDir": "./src/pages/",
-  "dashboards": {
-    "listaFinanceiro": "listaFinanceiro.tsx"
+  "exposedRoutes": {
+    "dashboards": {
+      "listaFinanceiro": "listaFinanceiro.tsx"
+    }
   }
 }

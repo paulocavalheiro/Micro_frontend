@@ -19,7 +19,7 @@ module.exports = {
         },
         filename: "static/chunks/remoteEntry.js",
         exposes: {
-          "./pages/listaFinanceiro": `${routes?.baseDir}${routes?.dashboards?.listaFinanceiro}`,
+          "./pages/listaFinanceiro": `${routes?.baseDir}${routes?.exposedRoutes?.dashboards?.listaFinanceiro}`,
         },
         shared: {
           "@chakra-ui/": {

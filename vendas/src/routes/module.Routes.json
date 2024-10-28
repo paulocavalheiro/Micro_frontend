@@ -1,0 +1,8 @@
+{
+  "basePages": "./src/pages/",
+  "exposedRoutes": {
+    "dashboards": {
+      "listaVendas": "listaVendas.tsx"
+    }
+  }
+}

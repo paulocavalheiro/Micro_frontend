@@ -1,10 +1,16 @@
 {
   "baseDir": "./",
-  "exposesRoutes": {
-     "contexts": {
+  "exposedRoutes": {
+    "contexts": {
       "UserProvider": "contexts/UserContext.tsx",
       "UserContextType": "contexts/UserContext.tsx"
     }
- 
+  },
+  "importedRoutes": {
+    "bime_financeiro": {
+      "financeiro": {
+        "listaFinanceiro": "bime_financeiro/pages/listaFinanceiro"
+      }
+    }
   }
 }

@@ -2,6 +2,7 @@
 
 const NextFederationPlugin = require("@module-federation/nextjs-mf");
 const routeConfig = require("./routes/routesModule.json");
+console.log("routeConfig: ", routeConfig);
 
 module.exports = {
   webpack(config, options) {
@@ -19,8 +20,8 @@ module.exports = {
         },
         filename: "static/chunks/remoteEntry.js",
         exposes: {
-          "./contexts/UserProvider": `${routeConfig.baseDir}${routeConfig.exposesRoutes.contexts.UserProvider}`,
-          "./contexts/UserContextType": `${routeConfig.baseDir}${routeConfig.exposesRoutes.contexts.UserContextType}`,
+          "./contexts/UserProvider": `${routeConfig.baseDir}/${routeConfig?.exposedRoutes?.contexts?.UserProvider}`,
+          "./contexts/UserContextType": `${routeConfig.baseDir}/${routeConfig?.exposedRoutes?.contexts?.UserContextType}`,
         },
         force: true,
         shared: {
