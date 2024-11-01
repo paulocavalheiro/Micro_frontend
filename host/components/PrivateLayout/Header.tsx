@@ -9,9 +9,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useAppContext } from "../../hooks/useAppContext";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Header() {
-  const { user } = useAppContext();
+  const router = useRouter();
+
+  const logout = async () => {
+    await signOut({ redirect: false });
+    router.replace("/");
+  };
 
   return (
     <Box
@@ -23,9 +30,7 @@ export default function Header() {
         width: "100%",
       }}
     >
-      <Text>
-        Bem vindo {user?.name} - {user?.email}
-      </Text>
+      <Text>Bem vindo</Text>
       <Menu>
         <MenuButton
           as={IconButton}
@@ -33,8 +38,8 @@ export default function Header() {
           icon={<HamburgerIcon />}
         />
         <MenuList>
-          <MenuItem icon={<AddIcon />} command="⌘T">
-            Novo usuario
+          <MenuItem icon={<AddIcon />} command="⌘T" onClick={logout}>
+            Sair
           </MenuItem>
           <MenuItem icon={<ExternalLinkIcon />} command="⌘N">
             Perfil

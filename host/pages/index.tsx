@@ -11,8 +11,9 @@ import {
   Stack,
   useEditable,
 } from "@chakra-ui/react";
-import { useUser } from "../contexts/UserContext";
+// import { useUser } from "../contexts/UserContext";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -20,18 +21,25 @@ export default function Home() {
   const [password, setPassword] = useState("");
 
   const router = useRouter();
-  const { setUser } = useUser();
+  // const { setUser } = useUser();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email && !password && !nome) {
-      return;
-    } else {
-      setUser({
-        name: nome,
+    console.log(email, password);
+
+    if (email && password) {
+      const result = await signIn("credentials", {
         email,
+        password,
+        redirect: false,
       });
-      router.push("/financeiro/telaFinanceiro");
+
+      if (result?.error) {
+        console.log(result.error);
+        return;
+      }
+
+      router.replace("/financeiro/telaFinanceiro");
     }
   };
 
@@ -64,7 +72,7 @@ export default function Home() {
             </Heading>
             <form onSubmit={handleSubmit}>
               <Stack spacing={4}>
-                <FormControl id="nome">
+                {/* <FormControl id="nome">
                   <FormLabel>Nome</FormLabel>
                   <Input
                     type="nome"
@@ -73,7 +81,7 @@ export default function Home() {
                     placeholder="Digite seu nome"
                     required
                   />
-                </FormControl>
+                </FormControl> */}
 
                 {/* Campo de email */}
                 <FormControl id="email">
