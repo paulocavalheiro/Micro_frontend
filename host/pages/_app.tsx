@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import theme from "./../styles/theme";
 import { UserProvider } from "../contexts/UserContext";
 import NextAuthSessionProvider from "../providers/sessionProviderAuth";
+import { SessionProvider } from "next-auth/react";
 
 export default function App({
   Component,
@@ -12,7 +13,7 @@ export default function App({
   const customTheme = useTheme();
 
   return (
-    <NextAuthSessionProvider>
+    <NextAuthSessionProvider session={session}>
       <UserProvider>
         <ChakraProvider theme={theme}>
           <Component {...pageProps} />

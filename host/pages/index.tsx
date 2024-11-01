@@ -25,7 +25,6 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(email, password);
 
     if (email && password) {
       const result = await signIn("credentials", {
@@ -33,7 +32,7 @@ export default function Home() {
         password,
         redirect: false,
       });
-
+      console.log(result);
       if (result?.error) {
         console.log(result.error);
         return;

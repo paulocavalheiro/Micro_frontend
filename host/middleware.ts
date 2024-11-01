@@ -10,7 +10,7 @@ export async function middleware(req: any) {
   if (protectedRoutes.some((route) => req.nextUrl.pathname.startsWith(route))) {
     if (!token) {
       const url = req.nextUrl.clone();
-      url.pathname = "/"; // redireciona para o login
+      //   url.pathname = "/"; // redireciona para o login
       return NextResponse.redirect(url);
     }
   }

@@ -9,11 +9,18 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useAppContext } from "../../hooks/useAppContext";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 export default function Header() {
   const router = useRouter();
+
+  const { status, data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      console.log("onUnauthenticated");
+    },
+  });
 
   const logout = async () => {
     await signOut({ redirect: false });
@@ -30,7 +37,11 @@ export default function Header() {
         width: "100%",
       }}
     >
-      <Text>Bem vindo</Text>
+      <Text>
+        {status === "authenticated"
+          ? `Bem-vindo, ${session?.user?.name}`
+          : "Você não está autenticado."}
+      </Text>
       <Menu>
         <MenuButton
           as={IconButton}
