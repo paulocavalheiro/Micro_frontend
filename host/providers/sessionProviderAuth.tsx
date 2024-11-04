@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 
 interface NextProviderProps {
   children: ReactNode;
-  session: any; // Defina o tipo correto da sessão caso esteja usando TypeScript
+  session: any;
 }
 
 export default function NextAuthSessionProvider({

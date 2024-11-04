@@ -1,68 +1,7 @@
 import NextAuth, { NextAuthOptions, Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 // import UseLogin from "@/app/services/useLogin";
 
-/**
- * autenticacao e criacao session
- */
-// const nextAuthOptions: NextAuthOptions = {
-//   providers: [
-//     CredentialsProvider({
-//       name: "Credentials",
-//       credentials: {
-//         email: {
-//           label: "Email",
-//           type: "text",
-//         },
-//         password: {
-//           label: "Password",
-//           type: "password",
-//         },
-//       },
-//       async authorize(
-//         credentials: Record<"email" | "password", string | any> | undefined
-//       ) {
-//         console.log("Credenciais recebidas:", credentials);
-//         if (
-//           credentials?.email === "paulo@email" &&
-//           credentials.password === "123"
-//         ) {
-//           return { id: "1", name: "Paulo", email: "paulo@email" };
-//         }
-//         return null;
-//       },
-//     }),
-//   ],
-//   secret: process.env.NEXTAUTH_SECRET,
-
-//   pages: {
-//     signIn: "/",
-//     signOut: "/",
-//     error: "/",
-//   },
-//   callbacks: {
-//     async jwt({ token, user }) {
-//       if (user) {
-//         token.user = user;
-//       }
-//       return token;
-//     },
-//     async session({ token }) {
-//       const newSession = token.user as Session;
-//       return newSession;
-//     },
-//   },
-// };
-
-// export default NextAuth(nextAuthOptions);
-
-// export  { handler as GET, handler as POST, nextAuthOptions };
-
-// pages/api/auth/[...nextauth].js
-// import NextAuth, { RequestInternal } from "next-auth";
-// import CredentialsProvider from "next-auth/providers/credentials";
-console.log("aaaaaaaaaaaa");
 export default NextAuth({
   providers: [
     CredentialsProvider({
@@ -73,17 +12,16 @@ export default NextAuth({
       },
 
       async authorize(
-        credentials: Record<"email" | "password", string> | undefined
+        credentials: Record<"email" | "password", string | any> | undefined
       ) {
-        // Lógica de autenticação (substitua por seu sistema de login)
+        console.log("Credenciais recebidas:", credentials);
         if (
           credentials?.email === "paulo@email" &&
-          credentials?.password === "123"
+          credentials.password === "123"
         ) {
-          return { name: "Paulo h", email: "paulo@email" };
-        } else {
-          return null;
+          return { id: "1", name: "Paulo Henrique", email: "paulo@email" };
         }
+        return null;
       },
     }),
   ],

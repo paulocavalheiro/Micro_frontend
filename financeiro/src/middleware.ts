@@ -1,17 +1,16 @@
-import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { NextResponse } from "next/server";
 
 export async function middleware(req: any) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-  // diretorios privados
-  const protectedRoutes = ["/financeiro"];
+  // direatorios privados
+  const protectedRoutes = ["/teste"];
 
   if (protectedRoutes.some((route) => req.nextUrl.pathname.startsWith(route))) {
     if (!token) {
-      const url = req.nextUrl.clone();
-      url.pathname = "/"; // redireciona caso n esteja autenticado
-      return NextResponse.redirect(url);
+      // redireciona caso n esteja autenticado
+      return NextResponse.redirect(new URL("/", process.env.NEXTAUTH_URL));
     }
   }
 

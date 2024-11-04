@@ -9,11 +9,12 @@ import {
   Heading,
   Input,
   Stack,
+  Text,
   useEditable,
 } from "@chakra-ui/react";
 // import { useUser } from "../contexts/UserContext";
 import { useRouter } from "next/router";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -21,6 +22,12 @@ export default function Home() {
   const [password, setPassword] = useState("");
 
   const router = useRouter();
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      console.log("n autenticado");
+    },
+  });
   // const { setUser } = useUser();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,7 +39,7 @@ export default function Home() {
         password,
         redirect: false,
       });
-      console.log(result);
+
       if (result?.error) {
         console.log(result.error);
         return;
@@ -71,17 +78,6 @@ export default function Home() {
             </Heading>
             <form onSubmit={handleSubmit}>
               <Stack spacing={4}>
-                {/* <FormControl id="nome">
-                  <FormLabel>Nome</FormLabel>
-                  <Input
-                    type="nome"
-                    value={nome}
-                    onChange={(e) => setNome(e.target.value)}
-                    placeholder="Digite seu nome"
-                    required
-                  />
-                </FormControl> */}
-
                 {/* Campo de email */}
                 <FormControl id="email">
                   <FormLabel>Email</FormLabel>
@@ -110,6 +106,7 @@ export default function Home() {
                 <Button type="submit" colorScheme="blue" size="lg" width="full">
                   Entrar
                 </Button>
+                <Text>Você não não está logado </Text>
               </Stack>
             </form>
           </Box>
